@@ -1,8 +1,8 @@
 # FoF BBCode Tabs
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/bbcode-tabs.svg)](https://packagist.org/packages/fof/bbcode-tabs)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/bbcode-tabs.svg)](https://packagist.org/packages/fof/bbcode-tabs) [![OpenCollective](https://img.shields.io/badge/opencollective-fof-blue.svg)](https://opencollective.com/fof/donate) [![Donate](https://img.shields.io/badge/donate-datitisev-important.svg)](https://datitisev.me/donate)
 
-A [Flarum](http://flarum.org) extension. Add tabs to your posts by using BBCode tags
+A [Flarum](http://flarum.org) extension. Add tabs to your posts by using BBCode tags.
 
 ### Installation
 
@@ -20,4 +20,8 @@ composer update fof/bbcode-tabs
 
 ### Links
 
+[<img src="https://opencollective.com/fof/donate/button@2x.png?color=blue" height="25" />](https://opencollective.com/fof/donate)
+[<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" height="25" />](https://patreon.com/datitisev)
+
 - [Packagist](https://packagist.org/packages/fof/bbcode-tabs)
+- [GitHub](https://github.com/FriendsOfFlarum/bbcode-tabs)

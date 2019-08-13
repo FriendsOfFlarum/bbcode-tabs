@@ -4,26 +4,34 @@ import { extend } from 'flarum/extend';
 import CommentPost from 'flarum/components/CommentPost';
 
 app.initializers.add('fof/bbcode-tabs', () => {
-  extend(CommentPost.prototype, 'config', function (original, isInitialized) {
-    console.log('hey');
-    if (isInitialized) return;
-
-    const containers = this.$('.tab-container');
+  extend(CommentPost.prototype, 'config', function () {
+    const containers = this.$('.tabs');
 
     containers.each((i, container) => {
       const $container = $(container);
-      const tabsItems = $container.find('.tab');
-      const panes = $container.find('.tab-pane');
 
-      if (!container || !tabsItems.length || !panes.length) return;
+      if ($container.find('input[type="radio"][name]').length) return;
 
-      if (!tabsItems.hasClass('active')) tabsItems[0].classList.add('active');
-      if (!panes.hasClass('active')) panes[0].classList.add('active');
+      const $inputs = $container.find('> .tab > input[type="radio"]');
 
-      tabsItems.wrap('<div class="tabs"></div>');
-      panes.wrap('<div class="tab-panes"></div>');
+      if (!$inputs.length) return;
 
-      tabs(container);
+      const $items = $container.find('.tab');
+      const num = Math.round(Math.random() * 100);
+
+      $inputs.attr('name', `tab-group-${num}`);
+
+      if (!$inputs.attr('checked')) $inputs[0].setAttribute('checked', true);
+
+      if (!$container.find('#tab-').length) return;
+
+      $items.each((i, item) => {
+        const $item = $(item);
+        const id = `tab-${num}-${++i}`;
+
+        $item.find('input[type="radio"]').attr('id', id);
+        $item.find('label').attr('for', id);
+      });
     });
   });
 });

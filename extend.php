@@ -22,17 +22,27 @@ return [
         ->configure(function (Configurator $configurator) {
             $configurator->BBCodes->addCustom(
                 '[tabs]{TEXT}[/tabs]',
-                '<div class="tab-container">{TEXT}</div>'
+                '<div class="tabs"><xsl:apply-templates/></div>'
             );
 
             $configurator->BBCodes->addCustom(
-                '[tab={TEXT;useContent}]',
-                '<a class="tab">{TEXT}</a>'
-            );
+                '[tab name={ANYTHING} pos={INT?} active={ANYTHING?} checked={ANYTHING?}]{TEXT}[/tab]',
+                <<<XML
+<div class="tab">
+    <input type="radio" id="tab-{@pos}">
+        <xsl:if test="@active">
+            <xsl:attribute name="checked">true</xsl:attribute>
+            <xsl:copy-of select="@checked" />
+        </xsl:if>
+    </input>
+    <label for="tab-1">{@name}</label>
 
-            $configurator->BBCodes->addCustom(
-                '[tab-pane={TEXT;useContent}]',
-                '<div class="tab-pane">{TEXT}</div>'
+    <div class="content">
+        <xsl:apply-templates/>
+    </div>
+</div>
+XML
+
             );
         })
 ];
