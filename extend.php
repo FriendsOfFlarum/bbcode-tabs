@@ -26,16 +26,15 @@ return [
             );
 
             $configurator->BBCodes->addCustom(
-                '[tab name={ANYTHING} pos={INT?} active={ANYTHING?} checked={ANYTHING?}]{TEXT}[/tab]',
+                '[tab name={ANYTHING} active={ANYTHING?]{TEXT}[/tab]',
                 <<<XML
 <div class="tab">
-    <input type="radio" id="tab-{@pos}">
+    <input type="radio">
         <xsl:if test="@active">
-            <xsl:attribute name="checked">true</xsl:attribute>
-            <xsl:copy-of select="@checked" />
+            <xsl:attribute name="checked">checked</xsl:attribute>
         </xsl:if>
     </input>
-    <label for="tab-1">{@name}</label>
+    <label>{@name}</label>
 
     <div class="content">
         <xsl:apply-templates/>

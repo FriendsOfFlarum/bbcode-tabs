@@ -1,8 +1,22 @@
-# FoF BBCode Tabs
+# BBCode Tabs by FriendsOfFlarum
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/bbcode-tabs.svg)](https://packagist.org/packages/fof/bbcode-tabs) [![OpenCollective](https://img.shields.io/badge/opencollective-fof-blue.svg)](https://opencollective.com/fof/donate) [![Donate](https://img.shields.io/badge/donate-datitisev-important.svg)](https://datitisev.me/donate)
 
 A [Flarum](http://flarum.org) extension. Add tabs to your posts by using BBCode tags.
+
+## Usage
+
+```bbcode
+[tabs]
+    [tab="hi"]Hi[/tab]
+    [tab="hello"]Hello[/tab]
+[/tabs]
+```
+
+```bbcode
+[tab="[NAME]" active="[ANYTHING]"]...[/tab]
+[tab name="[NAME]" active="[ANYTHING]"]...[/tab]
+```
 
 ### Installation
 

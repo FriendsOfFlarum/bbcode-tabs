@@ -4,6 +4,8 @@ import { extend } from 'flarum/extend';
 import CommentPost from 'flarum/components/CommentPost';
 
 app.initializers.add('fof/bbcode-tabs', () => {
+  let id = 0;
+
   extend(CommentPost.prototype, 'config', function () {
     const containers = this.$('.tabs');
 
@@ -17,11 +19,13 @@ app.initializers.add('fof/bbcode-tabs', () => {
       if (!$inputs.length) return;
 
       const $items = $container.find('.tab');
-      const num = Math.round(Math.random() * 100);
+      const num = id++;
 
       $inputs.attr('name', `tab-group-${num}`);
 
-      if (!$inputs.attr('checked')) $inputs[0].setAttribute('checked', true);
+      console.log($container, $inputs, $inputs.is('[checked]'));
+
+      if (!$inputs.is('[checked]')) $inputs[0].setAttribute('checked', 'checked');
 
       if (!$container.find('#tab-').length) return;
 
