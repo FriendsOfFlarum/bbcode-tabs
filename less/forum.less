@@ -19,7 +19,7 @@
 
     .tab label {
       background: @body-bg;
-      padding: 10px;
+      padding: 10px 10px 6.5px;
       border: 1px solid @muted-color;
       margin-left: -1px;
       position: relative;
@@ -29,6 +29,7 @@
       display: none;
     }
     .content {
+      display: none;
       position: absolute;
       top: 28px;
       left: 0;
@@ -37,17 +38,17 @@
       bottom: 0;
       padding: 20px;
       border: 1px solid @muted-color;
-      border-radius: @border-radius;
-      border-top-left-radius: 0;
+      border-radius: 0 @border-radius @border-radius @border-radius;
     }
+
     [type=radio]:checked ~ label {
       background: @control-bg;
       font-weight: bold;
       border-bottom: 1px solid @primary-color;
-      //z-index: 2;
+
     }
     [type=radio]:checked ~ label ~ .content {
-      z-index: 1;
+      display: block;
     }
   }
 }
