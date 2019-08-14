@@ -7,11 +7,20 @@
 
     .tab {
       float: left;
+
+      &:first-of-type label {
+        border-top-left-radius: @border-radius;
+      }
+
+      &:last-of-type label {
+        border-top-right-radius: @border-radius;
+      }
     }
+
     .tab label {
-      background: #eee;
+      background: @body-bg;
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid @muted-color;
       margin-left: -1px;
       position: relative;
       left: 1px;
@@ -23,15 +32,18 @@
       position: absolute;
       top: 28px;
       left: 0;
-      background: white;
+      background: @body-bg;
       right: 0;
       bottom: 0;
       padding: 20px;
-      border: 1px solid #ccc;
+      border: 1px solid @muted-color;
+      border-radius: @border-radius;
+      border-top-left-radius: 0;
     }
     [type=radio]:checked ~ label {
-      background: white;
-      border-bottom: 1px solid white;
+      background: @control-bg;
+      font-weight: bold;
+      border-bottom: 1px solid @primary-color;
       //z-index: 2;
     }
     [type=radio]:checked ~ label ~ .content {
