@@ -4,7 +4,7 @@
 
 A [Flarum](http://flarum.org) extension. Add tabs to your posts by using BBCode tags.
 
-## Usage
+### Usage
 
 ```bbcode
 [tabs]
@@ -12,6 +12,8 @@ A [Flarum](http://flarum.org) extension. Add tabs to your posts by using BBCode 
     [tab="hello"]Hello[/tab]
 [/tabs]
 ```
+
+To make a tag active by default:
 
 ```bbcode
 [tab="[NAME]" active="[ANYTHING]"]...[/tab]
@@ -39,3 +41,5 @@ composer update fof/bbcode-tabs
 
 - [Packagist](https://packagist.org/packages/fof/bbcode-tabs)
 - [GitHub](https://github.com/FriendsOfFlarum/bbcode-tabs)
+
+An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum).
