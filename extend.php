@@ -26,7 +26,7 @@ return [
             );
 
             $configurator->BBCodes->addCustom(
-                '[tab name={ANYTHING} active={ANYTHING?]{TEXT}[/tab]',
+                '[tab name={ANYTHING} active={ANYTHING?}]{TEXT}[/tab]',
                 <<<XML
 <div class="tab">
     <input type="radio">
