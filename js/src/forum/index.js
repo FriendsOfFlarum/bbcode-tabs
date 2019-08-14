@@ -23,11 +23,7 @@ app.initializers.add('fof/bbcode-tabs', () => {
 
       $inputs.attr('name', `tab-group-${num}`);
 
-      console.log($container, $inputs, $inputs.is('[checked]'));
-
       if (!$inputs.is('[checked]')) $inputs[0].setAttribute('checked', 'checked');
-
-      if (!$container.find('#tab-').length) return;
 
       $items.each((i, item) => {
         const $item = $(item);
