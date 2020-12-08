@@ -6,7 +6,7 @@ import CommentPost from 'flarum/components/CommentPost';
 app.initializers.add('fof/bbcode-tabs', () => {
   let id = 0;
 
-  extend(CommentPost.prototype, 'config', function () {
+  extend(CommentPost.prototype, 'oncreate', function () {
     const containers = this.$('.tabs');
 
     containers.each((i, container) => {
