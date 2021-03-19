@@ -3,7 +3,7 @@
 /*
  * This file is part of fof/bbcode-tabs.
  *
- * Copyright (c) 2019 FriendsOfFlarum.
+ * Copyright (c) FriendsOfFlarum.
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
@@ -28,7 +28,7 @@ return [
 
             $configurator->BBCodes->addCustom(
                 '[tab name={ANYTHING} active={ANYTHING?}]{TEXT}[/tab]',
-                <<<XML
+                <<<'XML'
 <div class="tab">
     <input type="radio">
         <xsl:if test="@active">
@@ -42,7 +42,6 @@ return [
     </div>
 </div>
 XML
-
             );
-        })
+        }),
 ];
