@@ -18,6 +18,7 @@ return [
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/less/forum.less'),
+
     (new Extend\Formatter())
         ->configure(function (Configurator $configurator) {
             $configurator->BBCodes->addCustom(
