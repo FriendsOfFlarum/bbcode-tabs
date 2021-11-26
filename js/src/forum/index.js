@@ -1,37 +1,38 @@
+import app from 'flarum/forum/app';
 import tabs from 'tabs';
 
 import { extend } from 'flarum/common/extend';
-import CommentPost from 'flarum/common/components/CommentPost';
+import CommentPost from 'flarum/forum/components/CommentPost';
 
 app.initializers.add('fof/bbcode-tabs', () => {
-    let id = 0;
+  let id = 0;
 
-    extend(CommentPost.prototype, 'oncreate', function () {
-        const containers = this.$('.tabs');
+  extend(CommentPost.prototype, 'oncreate', function () {
+    const containers = this.$('.tabs');
 
-        containers.each((i, container) => {
-            const $container = $(container);
+    containers.each((i, container) => {
+      const $container = $(container);
 
-            if ($container.find('input[type="radio"][name]').length) return;
+      if ($container.find('input[type="radio"][name]').length) return;
 
-            const $inputs = $container.find('> .tab > input[type="radio"]');
+      const $inputs = $container.find('> .tab > input[type="radio"]');
 
-            if (!$inputs.length) return;
+      if (!$inputs.length) return;
 
-            const $items = $container.find('.tab');
-            const num = id++;
+      const $items = $container.find('.tab');
+      const num = id++;
 
-            $inputs.attr('name', `tab-group-${num}`);
+      $inputs.attr('name', `tab-group-${num}`);
 
-            if (!$inputs.is('[checked]')) $inputs[0].setAttribute('checked', 'checked');
+      if (!$inputs.is('[checked]')) $inputs[0].setAttribute('checked', 'checked');
 
-            $items.each((i, item) => {
-                const $item = $(item);
-                const id = `tab-${num}-${++i}`;
+      $items.each((i, item) => {
+        const $item = $(item);
+        const id = `tab-${num}-${++i}`;
 
-                $item.find('input[type="radio"]').attr('id', id);
-                $item.find('label').attr('for', id);
-            });
-        });
+        $item.find('input[type="radio"]').attr('id', id);
+        $item.find('label').attr('for', id);
+      });
     });
+  });
 });
