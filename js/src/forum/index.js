@@ -1,13 +1,13 @@
 import app from 'flarum/forum/app';
-import tabs from 'tabs';
 
 import { extend } from 'flarum/common/extend';
 import CommentPost from 'flarum/forum/components/CommentPost';
+import ComposerPostPreview from 'flarum/forum/components/ComposerPostPreview';
 
 app.initializers.add('fof/bbcode-tabs', () => {
   let id = 0;
 
-  extend(CommentPost.prototype, 'oncreate', function () {
+  const createTabs = function () {
     const containers = this.$('.tabs');
 
     containers.each((i, container) => {
@@ -34,5 +34,10 @@ app.initializers.add('fof/bbcode-tabs', () => {
         $item.find('label').attr('for', id);
       });
     });
-  });
+  }
+
+  extend(CommentPost.prototype, ['oncreate', 'onupdate'], createTabs);
+  extend(ComposerPostPreview.prototype, 'oncreate', function () {
+    extend(this.attrs, 'surround', () => createTabs.call(this));
+  })
 });
