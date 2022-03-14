@@ -34,10 +34,10 @@ app.initializers.add('fof/bbcode-tabs', () => {
         $item.find('label').attr('for', id);
       });
     });
-  }
+  };
 
   extend(CommentPost.prototype, ['oncreate', 'onupdate'], createTabs);
   extend(ComposerPostPreview.prototype, 'oncreate', function () {
     extend(this.attrs, 'surround', () => createTabs.call(this));
-  })
+  });
 });
