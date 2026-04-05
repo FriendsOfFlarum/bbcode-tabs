@@ -5,9 +5,13 @@ import CommentPost from 'flarum/forum/components/CommentPost';
 import ComposerPostPreview from 'flarum/forum/components/ComposerPostPreview';
 
 app.initializers.add('fof/bbcode-tabs', () => {
-  let id = 0;
+  // Use global numbering only for non-post tabs (eg. previews, other components) to avoid overlap.
+  let globalId = 0;
 
-  const createTabs = function () {
+  const createTabs = function (this: CommentPost|ComposerPostPreview) {
+    const postId = 'post' in this.attrs && this.attrs.post?.id() || `Other${++globalId}`;
+    let id = 0;
+
     const containers = this.$('.tabs');
 
     containers.each((i, container) => {
@@ -20,8 +24,9 @@ app.initializers.add('fof/bbcode-tabs', () => {
       if (!$inputs.length) return;
 
       const $items = $container.find('.tab');
-      const num = id++;
+      const num = `post${postId}-tabs${id++}`;
 
+      $container.attr('id', `tabs-${num}`);
       $inputs.attr('name', `tab-group-${num}`);
 
       if (!$inputs.is('[checked]')) $inputs[0].setAttribute('checked', 'checked');
@@ -38,6 +43,12 @@ app.initializers.add('fof/bbcode-tabs', () => {
 
   extend(CommentPost.prototype, ['oncreate', 'onupdate'], createTabs);
   extend(ComposerPostPreview.prototype, ['oncreate', 'onupdate'], function () {
-    extend(this.attrs, 'surround', () => createTabs.call(this));
+    // In 2.x, surround is not immediately called after the component is created.
+    createTabs.call(this);
+
+    // Process tabs when the preview content is updated.
+    extend(this.attrs, 'surround', () => {
+      createTabs.call(this);
+    });
   });
 });
