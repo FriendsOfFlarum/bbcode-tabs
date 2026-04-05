@@ -37,7 +37,7 @@ app.initializers.add('fof/bbcode-tabs', () => {
   };
 
   extend(CommentPost.prototype, ['oncreate', 'onupdate'], createTabs);
-  extend(ComposerPostPreview.prototype, 'oncreate', function () {
+  extend(ComposerPostPreview.prototype, ['oncreate', 'onupdate'], function () {
     extend(this.attrs, 'surround', () => createTabs.call(this));
   });
 });
