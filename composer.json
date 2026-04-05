@@ -41,7 +41,10 @@
                 "name": "fas fa-border-none",
                 "backgroundColor": "#e74c3c",
                 "color": "#fff"
-            }
+            },
+            "optional-dependencies": [
+                "fof/pages"
+            ]
         },
         "flarum-cli": {
             "modules": {
@@ -50,7 +53,8 @@
         }
     },
     "require-dev": {
-        "flarum/phpstan": "^2.0.0"
+        "flarum/phpstan": "^2.0.0",
+        "fof/pages": "^2.0@beta"
     },
     "scripts": {
         "analyse:phpstan": "phpstan analyse",

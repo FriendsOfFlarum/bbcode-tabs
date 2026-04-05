@@ -1,15 +1,18 @@
 import app from 'flarum/forum/app';
 
 import { extend } from 'flarum/common/extend';
+import Component from 'flarum/common/Component';
 import CommentPost from 'flarum/forum/components/CommentPost';
 import ComposerPostPreview from 'flarum/forum/components/ComposerPostPreview';
+
+import PagePage from 'ext:fof/pages/forum/components/PagePage';
 
 app.initializers.add('fof/bbcode-tabs', () => {
   // Use global numbering only for non-post tabs (eg. previews, other components) to avoid overlap.
   let globalId = 0;
 
-  const createTabs = function (this: CommentPost|ComposerPostPreview) {
-    const postId = 'post' in this.attrs && this.attrs.post?.id() || `Other${++globalId}`;
+  const createTabs = function (this: CommentPost | ComposerPostPreview | Component) {
+    const postId = ('post' in this.attrs && this.attrs.post?.id()) || `Other${++globalId}`;
     let id = 0;
 
     const containers = this.$('.tabs');
@@ -51,4 +54,8 @@ app.initializers.add('fof/bbcode-tabs', () => {
       createTabs.call(this);
     });
   });
+
+  if ('fof-pages' in flarum.extensions) {
+    extend(PagePage.prototype, ['oncreate', 'onupdate'], createTabs);
+  }
 });
