@@ -21,7 +21,7 @@ return [
 
     (new Extend\Formatter())
         ->configure(function (Configurator $configurator) {
-            $HEIGHT_AND_FULLHEIGHT = <<<XML
+            $HEIGHT_AND_FULLHEIGHT = <<<'XML'
 <xsl:if test="@height or @fullheight">
     <xsl:attribute name="style">
         <xsl:choose>
@@ -46,7 +46,6 @@ XML;
     <xsl:apply-templates/>
 </div>
 XML
-
             );
 
             $configurator->BBCodes->addCustom(
