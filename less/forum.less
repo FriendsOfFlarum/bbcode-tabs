@@ -1,12 +1,20 @@
-.CommentPost {
+.CommentPost, .Pages-page .Pages-container {
   .tabs {
-    position: relative;
-    min-height: 200px; /* This part sucks */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     clear: both;
     margin: 25px 0;
+    align-content: flex-start;
+
+    &[data-fullheight] {
+      .tab > .content {
+        height: unset;
+      }
+    }
 
     .tab {
-      float: left;
+      display: contents;
 
       &:first-of-type label {
         border-top-left-radius: var(--border-radius);
@@ -15,41 +23,48 @@
       &:last-of-type label {
         border-top-right-radius: var(--border-radius);
       }
-    }
 
-    .tab label {
-      background: @body-bg;
-      padding: 10px 10px 7px;
-      border: 1px solid @muted-color;
-      margin-left: -1px;
-      position: relative;
-      left: 1px;
-    }
-    .tab [type=radio] {
-      display: none;
-    }
-    .content {
-      display: none;
-      position: absolute;
-      top: 28px;
-      left: 0;
-      background: var(--body-bg);
-      right: 0;
-      bottom: 0;
-      padding: 10px 20px;
-      border: 1px solid var(--muted-color);
-      border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
-      overflow-y: auto;
-    }
+      > [type=radio] {
+        display: none;
 
-    [type=radio]:checked ~ label {
-      background: var(--control-bg);
-      font-weight: bold;
-      border-bottom: 1px solid var(--primary-color);
+        ~ label {
+          order: 1;
+          flex: 0 0 auto;
+          background: var(--body-bg);
+          padding: 10px 10px 7px;
+          border: 1px solid var(--muted-color);
+          cursor: pointer;
+        }
+      }
 
-    }
-    [type=radio]:checked ~ label ~ .content {
-      display: block;
+      > .content {
+        display: none;
+        background: var(--body-bg);
+        padding: 10px 20px;
+        border: 1px solid var(--muted-color);
+        border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
+        overflow-y: auto;
+
+        height: var(--tab-content-height, 150px);
+
+        :last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      > [type=radio]:checked {
+        ~ label {
+          background: var(--control-bg);
+          font-weight: bold;
+          border-bottom: 1px solid var(--primary-color);
+        }
+
+        ~ label ~ .content {
+          display: block;
+          order: 2;
+          flex: 0 0 100%;
+        }
+      }
     }
   }
 }
